@@ -8,6 +8,7 @@ import me.cortex.vulkanite.lib.memory.VAccelerationStructure;
 import me.cortex.vulkanite.lib.memory.VBuffer;
 import me.cortex.vulkanite.lib.other.VUtil;
 import me.cortex.vulkanite.lib.other.sync.VFence;
+import net.irisshaders.iris.layer.OuterWrappedRenderType;
 import net.irisshaders.iris.mixin.LevelRendererAccessor;
 import net.irisshaders.iris.vertices.IrisVertexFormats;
 import net.minecraft.client.MinecraftClient;
@@ -83,23 +84,27 @@ public class EntityCapture {
                     //TODO: Doesnt support terrian vertex format yet, requires a second blas so that the instance offset can be the same
                     // as terrain instance offset
                     if (builtBuffer.getParameters().format().equals(IrisVertexFormats.TERRAIN)) {
+                        System.out.println("Skipping block entities (TERRAIN format)");
                         return;
                     }
 
                     // TODO: Support anything other than ENTITY
                     if (!builtBuffer.getParameters().format().equals(IrisVertexFormats.ENTITY)) {
+                        System.out.println("Skipping non-Entity format: " + builtBuffer.getParameters().format().toString());
                         return;
                     }
 
                     //Dont support no texture things
-                    if (!(layer instanceof RenderLayer.MultiPhase)) {
-                        return;
-                    }
-
-                    var texture = ((RenderLayer.MultiPhase)layer).phases.texture;
-                    if ((texture == null) || (texture.getId().isEmpty())) {
-                        return;
-                    }
+//                    if (!(layer instanceof OuterWrappedRenderType)) {
+//                        System.out.println("Skipping render layer that's not a MultiPhase, is " + layer.getClass().getName() + " instead");
+//                        return;
+//                    }
+//
+//                    var texture = ((RenderLayer.MultiPhase)layer).phases.texture;
+//                    if ((texture == null) || (texture.getId().isEmpty())) {
+//                        System.out.println("Skipping render layer with no texture");
+//                        return;
+//                    }
 
                     buffers.add(new Pair<>(layer, builtBuffer));
                 }

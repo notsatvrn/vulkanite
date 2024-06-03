@@ -123,7 +123,6 @@ switch (OperatingSystem.current()) {
 repositories {
     mavenCentral()
 }
-project.ext.lwjglNatives = "natives-windows"
 
 dependencies {
     implementation platform("org.lwjgl:lwjgl-bom:$lwjglVersion")

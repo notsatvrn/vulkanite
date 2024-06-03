@@ -91,15 +91,15 @@ public class EntityBlasBuilder {
         long combined_size = 0;
         TextureManager textureManager = MinecraftClient.getInstance().getTextureManager();
         for (var type : renders) {
-            if (((RenderLayer.MultiPhase) type.getLeft()).phases.texture instanceof RenderPhase.Textures) {
-                throw new IllegalStateException("Multi texture not supported");
-            }
-            var textureId = ((RenderLayer.MultiPhase) type.getLeft()).phases.texture.getId().get();
-            var texture = textureManager.getTexture(textureId);
-            var vkImage = ((IVGImage) texture).getVGImage();
-            if (vkImage == null) {
-                throw new IllegalStateException("Vulkan texture not created for render layer " + type.getLeft());
-            }
+//            if (((RenderLayer.MultiPhase) type.getLeft()).phases.texture instanceof RenderPhase.Textures) {
+//                throw new IllegalStateException("Multi texture not supported");
+//            }
+//            var textureId = ((RenderLayer.MultiPhase) type.getLeft()).phases.texture.getId().get();
+//            var texture = textureManager.getTexture(textureId);
+//            var vkImage = ((IVGImage) texture).getVGImage();
+//            if (vkImage == null) {
+//                throw new IllegalStateException("Vulkan texture not created for render layer " + type.getLeft());
+//            }
             if (!type.getRight().getParameters().format().equals(IrisVertexFormats.ENTITY)) {
                 throw new IllegalStateException("Unknown vertex format used");
             }
