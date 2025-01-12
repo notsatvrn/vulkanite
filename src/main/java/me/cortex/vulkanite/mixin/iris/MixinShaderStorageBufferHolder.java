@@ -37,7 +37,7 @@ public class MixinShaderStorageBufferHolder {
         if (storageInfo.relative()) {
             instance.resizeIfRelative(width, height);
         } else {
-            ((IVGBuffer)instance).setBuffer(alloc((int)storageInfo.size()));
+            ((IVGBuffer)instance).setBuffer(alloc(storageInfo.size()));
             GlStateManager._glBindBuffer(GL43C.GL_SHADER_STORAGE_BUFFER, instance.getId());
             IrisRenderSystem.clearBufferSubData(GL43C.GL_SHADER_STORAGE_BUFFER, GL43C.GL_R8, 0, storageInfo.size(), GL43C.GL_RED, GL43C.GL_BYTE, new int[] {0});
             IrisRenderSystem.bindBufferBase(GL43C.GL_SHADER_STORAGE_BUFFER, instance.getIndex(), instance.getId());
