@@ -161,7 +161,7 @@ public class MemoryManager {
         }
     };
 
-    public VRef<VGBuffer> createSharedBuffer(int size, int usage, int properties) {
+    public VRef<VGBuffer> createSharedBuffer(long size, int usage, int properties) {
         try (var stack = stackPush()) {
             var bufferCreateInfo = VkBufferCreateInfo
                             .calloc(stack)

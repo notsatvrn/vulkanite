@@ -28,7 +28,7 @@ public class MixinShaderStorageBufferHolder {
         return true;
     }
 
-    private static VRef<VGBuffer> alloc(int size) {
+    private static VRef<VGBuffer> alloc(long size) {
         return Vulkanite.INSTANCE.getCtx().memory.createSharedBuffer(size, VK_BUFFER_USAGE_STORAGE_BUFFER_BIT, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
     }
 
